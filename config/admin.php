@@ -24,6 +24,11 @@ return [
 
         'prefix' => 'admin',
 
+        /*
+        * application context path.
+        */
+        'context'   => 'laravle-admin',
+
         'namespace' => 'App\\Admin\\Controllers',
 
         'middleware' => ['web', 'admin'],
