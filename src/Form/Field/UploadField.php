@@ -288,8 +288,11 @@ trait UploadField
             return $path;
         }
 
-        //return Storage::disk(config('admin.upload.disk'))->url($path);
-        return url($path);
+        if ($this->storage) {
+            return $this->storage->url($path);
+        }
+
+        return Storage::disk(config('admin.upload.disk'))->url($path);
     }
 
     /**
