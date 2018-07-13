@@ -19,8 +19,7 @@ class Authenticate
     public function handle($request, Closure $next)
     {
         if (Auth::guard('admin')->guest() && !$this->shouldPassThrough($request)) {
-            $prefix = (string) config('admin.route.prefix');
-            return redirect()->guest("/$prefix/auth/login");
+            return redirect()->guest(admin_base_path('auth/login'));
         }
 
         return $next($request);
@@ -35,10 +34,9 @@ class Authenticate
      */
     protected function shouldPassThrough($request)
     {
-        $prefix = (string) config('admin.route.prefix');
         $excepts = [
-            "/$prefix/auth/login",
-            "/$prefix/auth/logout",
+            admin_base_path('auth/login'),
+            admin_base_path('auth/logout'),
         ];
 
         foreach ($excepts as $except) {

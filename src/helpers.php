@@ -53,6 +53,7 @@ if (!function_exists('admin_base_path')) {
         if (empty($prefix) || $prefix == '/') {
             return "/$context/" . trim($path, '/');
         }
+
         if (strpos($path, $context) === true) {
             return "/$prefix/" . trim($path, '/');
         } else {
